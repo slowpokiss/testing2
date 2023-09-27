@@ -9,7 +9,7 @@ describe("Credit Card Validator form", () => {
   let server = null;
   const baseUrl = "http://localhost:9000";
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     server = fork(`${__dirname}/e2e.server.js`);
     await new Promise((resolve, reject) => {
       server.on("error", reject);
@@ -22,8 +22,8 @@ describe("Credit Card Validator form", () => {
 
     browser = await puppetteer.launch({
       headless: false, // show gui
-      //slowMo: 25,
-      //devtools: true, // show devTools
+      slowMo: 25,
+      devtools: true, // show devTools
     });
     page = await browser.newPage();
   });
@@ -61,7 +61,7 @@ describe("Credit Card Validator form", () => {
     await page.waitForSelector(".validator-form.not-valid");
   });
 
-  afterEach(async () => {
+  afterAll(async () => {
     await browser.close();
     server.kill();
   });
