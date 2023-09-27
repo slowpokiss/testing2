@@ -1,5 +1,3 @@
-
-
 export default class validator {
   valid(number) {
     const lastGigit = Number(number[number.length - 1]);
